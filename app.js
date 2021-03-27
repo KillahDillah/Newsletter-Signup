@@ -13,9 +13,18 @@ app.post("/", function(req,res){
   var firstName = req.body.fName;
   var lastName = req.body.lName;
   var email = req.body.email;
-  console.log(req.body)
-  res.send('Thank you ' + firstName +"! You're signed up!");
+  // res.send('Thank you ' + firstName +"! You're signed up!");
+
+  if (res.statusCode === 200){
+    res.sendFile(__dirname + "/success.html")
+  } else {
+    res.sendFile(__dirname + "/failure.html")
+  }
 });
+
+app.post("/failure", function(req,res){
+  res.redirect("/");
+})
 
 app.listen(3000, function(req,res){
   console.log('served!')
